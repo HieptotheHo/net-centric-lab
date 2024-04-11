@@ -111,26 +111,33 @@ func main() {
 		session := strings.TrimRight(strings.TrimSpace(string(sessionReader)), "\n")
 		fmt.Println("Session", session)
 		for {
-			fmt.Print("Enter a number: ")
-			scanner.Scan()
-			guessNum := scanner.Text()
-			if guessNum == "exit" {
-				break
-			}
-			guessMessage := session + "_" + guessNum
-			_, err = fmt.Fprintf(conn, "%s\n", guessMessage)
+			// Prompt user to enter the filename
+			fmt.Print("Enter the filename: ")
+			reader := bufio.NewReader(os.Stdin)
+			fileName, err := reader.ReadString('\n')
 			if err != nil {
-				fmt.Println("Error sending data:", err)
+				fmt.Println("Error reading filename:", err)
+				return
+			}
+			requestMessage := session + "_" + fileName
+			// Send the filename to the server
+			_, err = conn.Write([]byte(requestMessage))
+			if err != nil {
+				fmt.Println("Error sending:", err)
 				return
 			}
 
-			response := make([]byte, 1024)
+			// Receive the response from the server
+			response := make([]byte, 4096) // Adjust buffer size as needed
 			n, err := conn.Read(response)
 			if err != nil {
-				fmt.Println("Error receiving data:", err)
+				fmt.Println("Error receiving:", err)
 				return
 			}
-			fmt.Println("Server:", string(response[:n]))
+
+			// Print the received content
+			fmt.Println("File content:")
+			fmt.Println(string(response[:n]))
 		}
 	} else {
 		fmt.Println("Login failed:", response.Message)

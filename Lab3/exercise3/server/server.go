@@ -9,7 +9,6 @@ import (
 	"math/rand"
 	"net"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -137,13 +136,13 @@ func handleRequest(conn net.Conn) {
 	}
 
 	rand.Seed(time.Now().UnixNano())
-	secretNumber := rand.Intn(100) + 1
-	fmt.Println("The secret number:", secretNumber)
+
 	///////////////////
 	// write data to response
 	time := time.Now().Format(time.ANSIC)
 	session := rand.Intn(999)
 	responseStr := fmt.Sprintf("\nSuccessful Connection at %v", time)
+	fmt.Println(responseStr)
 	conn.Write([]byte(responseStr))
 
 	_, err = fmt.Fprintf(conn, "%d", session)
@@ -161,30 +160,26 @@ func handleRequest(conn net.Conn) {
 		fmt.Print("Client: ", message)
 		// Extract session and guessNum
 		parts := strings.Split(strings.TrimSpace(message), "_")
-		numPart := strings.TrimSpace(parts[1])
-		num, err := strconv.Atoi(numPart)
+		fileName := strings.TrimSpace(parts[1])
 		if err != nil {
 			fmt.Println("Error:", err)
 			return
 		}
-
-		// Parse string to integer
-
-		var returnMessage string
-		if num > secretNumber {
-			returnMessage = strconv.Itoa(session) + "_Your number is greater than mine."
-		} else if num < secretNumber {
-			returnMessage = strconv.Itoa(session) + "_Your number is smaller than mine."
-		} else {
-			returnMessage = strconv.Itoa(session) + "_You guess is correct!!!\n------\nServer has changed its secret number. Take new guess!"
-			secretNumber = rand.Intn(100) + 1
-			fmt.Println("The secret number has been changed to:", secretNumber)
-		}
-		_, err = conn.Write([]byte(returnMessage))
+		fmt.Println(fileName)
+		// Read the content of the file
+		content, err := os.ReadFile(fileName)
 		if err != nil {
-			fmt.Println("Error writing:", err)
+			fmt.Println("Error reading file:", err)
 			return
 		}
+
+		// Send the content back to the client
+		_, err = conn.Write(content)
+		if err != nil {
+			fmt.Println("Error sending:", err)
+			return
+		}
+
 	}
 
 }
