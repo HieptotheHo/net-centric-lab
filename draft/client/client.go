@@ -19,12 +19,28 @@ func main() {
 	checkError(err)
 	defer conn.Close()
 
-	var name string
-	fmt.Print("Enter your name: ")
-	fmt.Scanln(&name)
-	clientName = name
-	_, err = conn.Write([]byte(name + " " + "@name"))
-	checkError(err)
+	//receive message for register name
+	buffer := make([]byte, 1024)
+	for {
+		fmt.Println("hello")
+		var name string
+		fmt.Print("Enter your name: ")
+		fmt.Scanln(&name)
+		clientName = name
+
+		fmt.Println(name)
+		//register name
+		_, err = conn.Write([]byte(name + " " + "@name"))
+		checkError(err)
+
+		n, _, err := conn.ReadFromUDP(buffer)
+		checkError(err)
+
+		fmt.Println(string(buffer[:n]))
+		if string(buffer[:n]) == "Registered successfully!" {
+			break
+		}
+	}
 
 	go receiveMessages(conn)
 	sendMessages(conn)

@@ -10,10 +10,11 @@ import (
 var clientList = make(map[*net.UDPAddr]string)
 
 func printClientList() {
-	fmt.Println("Client List:")
+	fmt.Println("#### CLIENT LIST ####")
 	for key, value := range clientList {
 		fmt.Println(key, ":", value)
 	}
+	fmt.Println("#####################")
 }
 
 func main() {
@@ -50,23 +51,45 @@ func main() {
 			delete(clientList, addr)
 		} else {
 			if prefix == "@name" {
-				fmt.Println(clientName, "-", addr, "has been connected!")
-				clientList[addr] = clientName
-			} else {
-				if prefix == "@all" {
-					for address, name := range clientList {
-						if address != addr && name != clientName {
-							conn.WriteToUDP([]byte(clientName+": "+message), address)
-						}
-					}
-				} else {
-					receiver := prefix[1:]
-					for address, name := range clientList {
-						if receiver == name {
-							conn.WriteToUDP([]byte(clientName+": "+message), address)
-						}
+
+				dup := false
+				for _, name_temp := range clientList {
+					if clientName == name_temp {
+						conn.WriteToUDP([]byte("Your name has been registered before!"), addr)
+						dup = true
 					}
 				}
+
+				fmt.Println("DEBUG: ", dup)
+				if dup == false {
+					fmt.Println(clientName, "-", addr, "has been connected!")
+					clientList[addr] = clientName
+					conn.WriteToUDP([]byte("Registered successfully!"), addr)
+					printClientList()
+
+				}
+
+			} else if prefix == "@all" {
+				for address, name := range clientList {
+					if address != addr && name != clientName {
+						conn.WriteToUDP([]byte(clientName+": "+message), address)
+					}
+				}
+			} else if strings.HasPrefix(prefix, "@") {
+				receiver := prefix[1:]
+				available := false
+				for address, name := range clientList {
+					if receiver == name {
+						conn.WriteToUDP([]byte(clientName+": "+message), address)
+						available = true
+						break
+					}
+				}
+				if available == false {
+					conn.WriteToUDP([]byte("No client name matched!"), addr)
+				}
+			} else {
+				conn.WriteToUDP([]byte("Server: Wrong Syntax!"), addr)
 			}
 
 		}
