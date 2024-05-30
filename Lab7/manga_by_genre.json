@@ -2,38 +2,38 @@
   "ACTION": [
     "The Mafia Nanny",
     "unOrdinary",
-    "Omniscient Reader",
     "Teenage Mercenary",
-    "Avatar: The Last Airbender",
+    "Omniscient Reader",
     "The Reborn Young Lord is an Assassin",
     "Jungle Juice",
     "Eleceed",
+    "Avatar: The Last Airbender",
     "The Academy's Genius Swordsman",
-    "Villain to Kill"
+    "I Was the Final Boss"
   ],
   "COMEDY": [
     "I Am the Villain",
     "Swolemates",
     "Hello Baby",
+    "Operation: True Love",
     "High Class Homos",
     "My Lucky Strike",
-    "Iseop’s Romance",
+    "The Apothecary Prince",
     "Not So Shoujo Love Story",
-    "1HP Club",
-    "Acception",
-    "FLOAT"
+    "Iseop’s Romance",
+    "The Fish I Loved"
   ],
   "DRAMA": [
     "The Remarried Empress",
     "I’m the Queen in This Life",
-    "Teenage Mercenary",
-    "The Guy Upstairs",
     "Love 4 a Walk",
+    "Teenage Mercenary",
     "The Greatest Estate Developer",
-    "Jackson's Diary",
     "The Price Is Your Everything",
+    "Jackson's Diary",
+    "Winter Before Spring",
     "Muse on Fame",
-    "From a Knight to a Lady"
+    "Serena"
   ],
   "FANTASY": [
     "Lore Olympus",
@@ -41,11 +41,11 @@
     "Eaternal Nocturnal",
     "The Dragon King’s Bride",
     "Not Your Typical Reincarnation Story",
-    "Adopted by a Murderous Duke Family",
     "I’m the Queen in This Life",
-    "My In-Laws are Obsessed with Me ",
     "The Tyrant Wants to Be Good",
-    "Omniscient Reader"
+    "Adopted by a Murderous Duke Family",
+    "My In-Laws are Obsessed with Me ",
+    "The Age of Arrogance"
   ],
   "ROMANCE": [
     "The Mafia Nanny",
@@ -54,10 +54,10 @@
     "Eaternal Nocturnal",
     "The Dragon King’s Bride",
     "Not Your Typical Reincarnation Story",
+    "The Tyrant Wants to Be Good",
     "Adopted by a Murderous Duke Family",
-    "The Kiss Bet",
     "My In-Laws are Obsessed with Me ",
-    "The Tyrant Wants to Be Good"
+    "Boyfriends."
   ],
   "SCI-FI": [
     "Down To Earth",
@@ -67,9 +67,9 @@
     "The Prince of Southland",
     "Rebirth",
     "LoveBot",
-    "The Last Dimension",
     "Quantum Entanglement",
-    "Back From Black"
+    "Back From Black",
+    "Black Knight"
   ],
   "SLICEOFLIFE": [
     "Boyfriends.",
@@ -77,11 +77,11 @@
     "To The Stars and Back",
     "High Class Homos",
     "Daybreak",
-    "Bugtopia",
     "Boy-Friend's Rule",
-    "K.O!",
+    "Bugtopia",
+    "My Giant Nerd Boyfriend",
     "Plus One",
-    "My Giant Nerd Boyfriend"
+    "Vampire Husband"
   ],
   "SUPERHERO": [
     "unOrdinary",
@@ -96,9 +96,9 @@
     "I Don't Want This Kind of Hero"
   ],
   "SUPERNATURAL": [
-    "Jackson's Diary",
-    "Clinic of Horrors",
     "Nevermore",
+    "Clinic of Horrors",
+    "Jackson's Diary",
     "I'm the Grim Reaper",
     "Paranoid Mage",
     "Hiding in the Moon",
@@ -108,15 +108,15 @@
     "Demon Prince \u0026 The Salaryman"
   ],
   "THRILLER": [
-    "The Guy Upstairs",
     "Hand Jumper",
     "Clinic of Horrors",
     "Everything is Fine",
     "Death: Rescheduled",
     "I'm the Grim Reaper",
-    "Don't Read This",
     "I'm Dating a Psychopath",
+    "Don't Read This",
     "Silent Screams",
-    "Like Mother, Like Daughter"
+    "Like Mother, Like Daughter",
+    "Rebirth"
   ]
 }
